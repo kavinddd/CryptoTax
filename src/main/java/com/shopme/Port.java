@@ -53,7 +53,7 @@ public class Port {
         float remainingInventory = 0F;
         float tempQuantity;
 
-        while (transactionsCopy.isEmpty() || remainingInventory < 0) {
+        while (!transactionsCopy.isEmpty() || !remainingInventory < 0) {
             currentTransaction = transactionsCopy.poll();
             tempQuantity = currentTransaction.quantity();
 
@@ -67,8 +67,9 @@ public class Port {
         if (remainingInventory < 0) {
             System.out.println("You have not enough inventory");
         }
-
-        addTransaction(new Transaction('S', asset, price, quantity));
+        else {
+            addTransaction(new Transaction('S', asset, price, quantity));
+        }
     }
 
     public float calculateRealizedProfit() {
