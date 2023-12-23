@@ -53,7 +53,7 @@ public class Port {
         float remainingInventory = 0F;
         float tempQuantity;
 
-        while (transactionsCopy.isEmpty() || remainingInventory < 0) {
+        while (!transactionsCopy.isEmpty() || !remainingInventory < 0) {
             currentTransaction = transactionsCopy.poll();
             tempQuantity = currentTransaction.quantity();
 
