@@ -15,7 +15,10 @@ public class Main {
 
         portfolio.setTransactions(transactions);
 
+        portfolio.printTransactions();
+
         Float netProfit = portfolio.calculateRealizedProfit();
+        System.out.println("Realized profit: ");
         System.out.println(netProfit);
 
 //        // A. buy 2 btc at 100, 000.00

@@ -88,12 +88,12 @@ public class Port {
             float quantitiesToSell = sellPositionTransactions.stream()
                     .map(Transaction::quantity)
                     .reduce(0F, (a, b) -> a + b);
-            float totalSoldPrice =  sellPositionTransactions.stream()
-                    .map(Transaction::price)
+            float totalSellValue =  sellPositionTransactions.stream()
+                    .map(transaction -> transaction.quantity() * transaction.price())
                     .reduce(0F, (a, b) -> a + b);
 
-            // calculate average cost
-            float averageCost = totalSoldPrice / sellPositionTransactions.size();
+            // calculate average cost per 1 qty
+            float averageSellCost = totalSellValue / quantitiesToSell  ;
 
             buyPositionTransactions = getTransactionsByAssetNameAndPosition(asset, 'B');
             Transaction currentTransaction;
@@ -113,7 +113,7 @@ public class Port {
                 float buyPrice = currentTransaction.price();
                 float buyValue = buyPrice * quantitiesCanSell;
 
-                float sellValue = averageCost * quantitiesCanSell;
+                float sellValue = averageSellCost * quantitiesCanSell;
 
                 netProfit = netProfit + sellValue - buyValue;
 
