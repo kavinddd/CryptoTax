@@ -67,8 +67,9 @@ public class Port {
         if (remainingInventory < 0) {
             System.out.println("You have not enough inventory");
         }
-
-        addTransaction(new Transaction('S', asset, price, quantity));
+        else {
+            addTransaction(new Transaction('S', asset, price, quantity));
+        }
     }
 
     public float calculateRealizedProfit() {
